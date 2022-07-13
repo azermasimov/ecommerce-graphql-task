@@ -1,0 +1,194 @@
+/* CartPageItem Component Styles */
+
+.cart-page-product-container {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-page-product-container .product-info p:nth-child(1) {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 27px;
+  color: #1d1f22;
+}
+
+.cart-page-product-container .product-info p:nth-child(2) {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 27px;
+  margin-top: 16px;
+}
+
+.cart-page-product-container .product-info p:nth-child(3) {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  color: #1d1f22;
+  margin-top: 20px;
+}
+
+.cart-page-product-container .product-info p:nth-child(4) {
+  font-family: "Roboto Condensed";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  color: #1d1f22;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+.cart-page-product-container .product-info .sizes {
+  display: flex;
+  flex-direction: row;
+  width: 276px;
+  height: 45px;
+  margin-top: 8px;
+}
+
+.cart-page-product-container .product-info .sizes div {
+  width: 63px;
+  height: 45px;
+  margin-right: 8px;
+  border: 1px solid #1d1f22;
+  font-family: "Source Sans Pro";
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1d1f22;
+  cursor: pointer;
+}
+
+.cart-page-product-container .product-info .sizes div:hover {
+  background: #1d1f22;
+  color: #ffffff;
+}
+
+.cart-page-product-container .product-info .sizes div.active {
+  background: #1d1f22;
+  color: #ffffff;
+}
+
+.cart-page-product-container .product-info .text-color {
+  font-family: "Roboto Condensed";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  color: #1d1f22;
+  margin-top: 16px;
+  text-transform: uppercase;
+}
+
+.cart-page-product-container .product-info .colors {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  width: 116px;
+  height: 32px;
+}
+
+.cart-page-product-container .product-info .colors div {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+  background: #1d1f22;
+  cursor: pointer;
+}
+
+.cart-page-product-container .product-info .colors div:hover {
+  border: 1px solid #5ece7b;
+}
+
+.cart-page-product-container .count-img-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cart-page-product-container .count-wrapper {
+  width: 45px;
+  height: 288px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cart-page-product-container .count-wrapper div:nth-child(1),
+.cart-page-product-container .count-wrapper div:nth-child(3) {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #1d1f22;
+  font-size: 36px;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cart-page-product-container .count-wrapper p {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 160%;
+  text-align: center;
+  color: #1d1f22;
+}
+
+.cart-page-product-container .product-img {
+  position: relative;
+  margin-left: 24px;
+  height: 288px;
+  width: 200px;
+}
+
+.cart-page-product-container .product-img img {
+  height: 288px;
+  width: 200px;
+}
+
+.cart-page-product-container .product-img div {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.73);
+  cursor: pointer;
+  z-index: 999;
+}
+
+.cart-page-product-container .product-img .left {
+  bottom: 16px;
+  right: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-page-product-container .product-img .left img {
+  width: 5.63px;
+  height: 11.24px;
+}
+
+.cart-page-product-container .product-img .right {
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-page-product-container .product-img .right img {
+  width: 5.63px;
+  height: 11.24px;
+  transform: rotate(180deg);
+}
+
+#bottom-line {
+  width: 100%;
+  height: 1px;
+  background: #e5e5e5;
+  margin-top: 32px;
+}

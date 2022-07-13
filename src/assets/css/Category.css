@@ -1,0 +1,59 @@
+/* Category Page Styles */
+
+.main {
+  margin: 140px 90px;
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 160%;
+}
+
+.main .category-name {
+  text-transform: capitalize;
+}
+
+.main .cards {
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 90px;
+}
+
+.main .cards .card {
+  background: #ffffff;
+  width: 346px;
+  height: 444px;
+  margin-right: 30px;
+  margin-bottom: 80px;
+}
+
+.main .cards .card:hover {
+  box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+}
+
+.main .cards .card img {
+  width: 316px;
+  height: 330px;
+  margin: 16px 16px 0 16px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.main .cards .card .card-content {
+  margin: 8px 16px 16px 16px;
+}
+
+.main .cards .card .card-content .card-title {
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 160%;
+  color: #1d1f22;
+  cursor: pointer;
+}
+
+.main .cards .card .card-content .card-price {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+  color: #1d1f22;
+}

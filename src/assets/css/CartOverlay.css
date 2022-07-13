@@ -1,0 +1,89 @@
+/* CartOverlay Component */
+
+.overlay-styles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(57, 55, 72, 0.22);
+}
+
+#cart-overlay {
+  position: fixed;
+  width: 335px;
+  height: 580px;
+  right: 62px;
+  top: 78px;
+  background: #ffffff;
+  z-index: 1000;
+  overflow: auto;
+}
+
+#cart-overlay .cart-overlay-wrapper {
+  width: 293px;
+  height: 538px;
+  margin: 32px 16px;
+}
+
+#cart-overlay .cart-overlay-wrapper .title {
+  width: 200px;
+  height: 26px;
+}
+
+#cart-overlay .cart-overlay-wrapper .title p {
+  font-size: 16px;
+  line-height: 160%;
+  color: #1d1f22;
+}
+
+#cart-overlay .cart-overlay-wrapper .title p:nth-child(1) {
+  display: inline;
+  font-weight: 700;
+}
+
+#cart-overlay .cart-overlay-wrapper .title p:nth-child(2) {
+  display: inline;
+  font-weight: 500;
+}
+
+#cart-overlay .cart-overlay-wrapper .total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 43px;
+}
+
+#cart-overlay .cart-overlay-wrapper .total p {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  color: #1d1f22;
+}
+
+#cart-overlay .cart-overlay-wrapper .cart-btns {
+  margin: 32px 0 32px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+#cart-overlay .cart-overlay-wrapper .cart-btns button {
+  width: 140px;
+  height: 43px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 120%;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+#cart-overlay .cart-overlay-wrapper .cart-btns button:nth-child(1) {
+  background: #ffffff;
+  border: 1px solid #1d1f22;
+}
+
+#cart-overlay .cart-overlay-wrapper .cart-btns button:nth-child(2) {
+  background: #5ece7b;
+  color: #ffffff;
+  border: none;
+}

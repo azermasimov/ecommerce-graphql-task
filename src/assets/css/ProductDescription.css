@@ -1,0 +1,168 @@
+/* Product Description Page */
+
+.description-container {
+  margin: 113px 219px 260px 96px;
+  display: flex;
+  flex-direction: row;
+}
+
+.description-container .imgs-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-right: 40px;
+}
+
+.description-container .imgs-wrapper img {
+  margin-top: 33px;
+  height: 80px;
+  width: 79px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.description-container .imgs-wrapper img:hover {
+  border: 1px solid #1d1f22;
+}
+
+.description-container .selected-img {
+  margin-top: 33px;
+}
+
+.description-container .selected-img img {
+  height: 595px;
+  width: 610px;
+  object-fit: cover;
+}
+
+.description-container .info-wrapper {
+  margin: 33px 0 0 100px;
+  width: 100%;
+}
+
+.description-container .info-wrapper .brand {
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 27px;
+}
+
+.description-container .info-wrapper .name {
+  margin-top: 16px;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 27px;
+}
+
+.description-container .info-wrapper .attributes {
+  margin-top: 43px;
+  display: flex;
+  flex-direction: column;
+}
+
+.description-container .info-wrapper .attributes .attribute {
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.description-container .info-wrapper .attributes .attribute .name {
+  font-family: "Roboto Condensed";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.description-container .info-wrapper .attributes .attribute .values {
+  display: flex;
+  flex-direction: row;
+  margin-top: 8px;
+}
+
+.description-container .info-wrapper .attributes .attribute .value {
+  width: 63px;
+  height: 45px;
+  border: 1px solid #1d1f22;
+  background: #ffffff;
+  color: #1d1f22;
+  font-family: "Source Sans Pro";
+  font-weight: 400;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 12px;
+}
+
+.description-container
+  .info-wrapper
+  .attributes
+  .attribute
+  .value.color-square {
+  border: 1px solid #1d1f22;
+  width: 32px;
+  height: 32px;
+}
+
+.description-container
+  .info-wrapper
+  .attributes
+  .attribute
+  .value.color-square:hover {
+  border: 1px solid #5ece7b;
+}
+
+.description-container .info-wrapper .attributes .values .value:hover {
+  background-color: #1d1f22;
+  color: #ffffff;
+}
+
+.description-container .info-wrapper .price-text {
+  font-family: "Roboto Condensed";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: uppercase;
+  margin-top: 36px;
+}
+
+.description-container .info-wrapper .price-value {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 18px;
+  margin-top: 10px;
+}
+
+.description-container .info-wrapper button {
+  width: 292px;
+  height: 52px;
+  margin-top: 20px;
+  background: #5ece7b;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 120%;
+  text-transform: uppercase;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.description-container .info-wrapper .description {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 159.96%;
+  margin: 40px 0 178px 0;
+  line-height: 35px;
+}
+
+.description-container .info-wrapper .description h3 {
+  margin-top: 20px;
+}
+
+.description-container .info-wrapper .description p {
+  margin-top: 12px;
+  line-height: 28px;
+}
