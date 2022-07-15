@@ -22,7 +22,6 @@ class CartOverlay extends Component {
                 </div>
                 {/* use map higher order function to get cart items from object(data) */}
                 <CartItem />
-                <CartItem />
 
                 <div className="total">
                   <p>Total</p>

@@ -1,28 +1,70 @@
 import { Component } from "react";
 import "../assets/css/CartPageItem.css";
 import sliderArrow from "../assets/svg/sliderArrow.svg";
+import CartContext from "../Context/CartContext";
 
 class CartPageItem extends Component {
+  state = {
+    imgIndex: 0,
+  };
+
+  static contextType = CartContext;
+
   render() {
+    const { cartData } = this.props;
+    const { currency } = this.context;
+
+    if (this.state.imgIndex > cartData.gallery.length - 1) {
+      this.state.imgIndex = 0;
+    }
+
+    if (this.state.imgIndex < 0) {
+      this.state.imgIndex = cartData.gallery.length - 1;
+    }
+
     return (
       <div>
         <div className="cart-page-product-container">
           <div className="product-info">
-            <p>Apollo</p>
-            <p>Running Short</p>
-            <p>$50.00</p>
-            <p>Size:</p>
-            <div className="sizes">
-              <div>xs</div>
-              <div className="active">s</div>
-              <div>m</div>
-              <div>l</div>
-            </div>
-            <p className="text-color">Color:</p>
-            <div className="colors">
-              <div className="active"></div>
-              <div></div>
-              <div></div>
+            <p className="brand">{cartData.brand}</p>
+            <p className="product-name">{cartData.name}</p>
+
+            {cartData.prices.map(
+              (price) =>
+                price.currency.symbol === currency && (
+                  <p key={price.amount} className="price">
+                    {currency} {price.amount}
+                  </p>
+                )
+            )}
+
+            <div className="attributes">
+              {cartData.attributes.map((attribute) => (
+                <div className="attribute" key={attribute.id}>
+                  <p className="name">{attribute.name}:</p>
+                  <div className="values">
+                    {attribute.items.map((item) => (
+                      <div
+                        key={item.id}
+                        className={`value ${
+                          attribute.name === "Color" && "color-square"
+                        } 
+                        
+                        `}
+                        style={
+                          attribute.name === "Color"
+                            ? {
+                                background: `${item.value}`,
+                              }
+                            : null
+                        }
+                      >
+                        {attribute.name === "Color" ? null : item.value}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -34,14 +76,22 @@ class CartPageItem extends Component {
             </div>
 
             <div className="product-img">
-              <img
-                src="https://images.unsplash.com/photo-1554568218-0f1715e72254?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8dCUyMHNoaXJ0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                alt="product"
-              />
-              <div className="left">
+              <img src={cartData.gallery[this.state.imgIndex]} alt="product" />
+
+              <div
+                className="left"
+                onClick={() =>
+                  this.setState({ imgIndex: this.state.imgIndex - 1 })
+                }
+              >
                 <img src={sliderArrow} alt="slider arrow icon" />
               </div>
-              <div className="right">
+              <div
+                className="right"
+                onClick={() =>
+                  this.setState({ imgIndex: this.state.imgIndex + 1 })
+                }
+              >
                 <img src={sliderArrow} alt="slider arrow icon" />
               </div>
             </div>

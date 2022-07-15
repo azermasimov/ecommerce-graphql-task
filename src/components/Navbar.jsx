@@ -7,6 +7,7 @@ import CartOverlay from "./CartOverlay";
 import Spinner from "./Spinner";
 import { Query } from "@apollo/client/react/components";
 import { gql } from "@apollo/client";
+import CartContext from "../Context/CartContext";
 
 const GET_DATA = gql`
   {
@@ -23,7 +24,11 @@ class Navbar extends Component {
     showCartOverlay: false,
   };
 
+  static contextType = CartContext;
+
   render() {
+    const { currency, onChangeCurrency } = this.context;
+
     return (
       <Query query={GET_DATA}>
         {({ data, loading, error }) => {
@@ -77,7 +82,7 @@ class Navbar extends Component {
                       })
                     }
                   >
-                    <p>{this.props.symbol}</p>
+                    <p>{currency}</p>
                     <img
                       className={`${
                         this.state.showCurrencies ? "rotate" : null
@@ -91,9 +96,9 @@ class Navbar extends Component {
                         {data.currencies.map((currency) => (
                           <div
                             className="option"
-                            onClick={() => {
-                              this.props.currency(`${currency.symbol}`);
-                            }}
+                            onClick={() =>
+                              onChangeCurrency(`${currency.symbol}`)
+                            }
                             key={currency.label}
                           >
                             <p>

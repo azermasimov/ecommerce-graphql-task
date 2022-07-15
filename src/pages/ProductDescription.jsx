@@ -3,28 +3,41 @@ import "../assets/css/ProductDescription.css";
 import Spinner from "../components/Spinner";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
+import CartContext from "../Context/CartContext";
 
 class ProductDescription extends Component {
   state = {
     img: "",
+    productData: [],
+    attributes: [],
   };
 
+  static contextType = CartContext;
+
   render() {
+    console.log(this.state.attributes);
+
     const pathname = window.location.pathname;
     const id = pathname.slice(pathname.lastIndexOf("/") + 1);
+
+    const { currency, cartData, handleOrderDetails, sendCartData } =
+      this.context;
 
     const GET_DATA = gql`
     {
       product(id: ${JSON.stringify(id)}) {
+        id
         name
         inStock
         gallery
         description
         category
         attributes {
+          id
           name
           type
           items {
+            id
             value
             displayValue
           }
@@ -84,6 +97,12 @@ class ProductDescription extends Component {
                               key={item.id}
                               className={`value ${
                                 attribute.name === "Color" && "color-square"
+                              } ${
+                                this.state.attributes.some(
+                                  (att) =>
+                                    att.id === attribute.id &&
+                                    att.value === item.value
+                                ) && "active"
                               }`}
                               style={
                                 attribute.name === "Color"
@@ -92,6 +111,17 @@ class ProductDescription extends Component {
                                     }
                                   : null
                               }
+                              onClick={() => {
+                                this.setState({
+                                  attributes: [
+                                    ...this.state.attributes,
+                                    {
+                                      id: attribute.id,
+                                      value: item.value,
+                                    },
+                                  ],
+                                });
+                              }}
                             >
                               {attribute.name === "Color" ? null : item.value}
                             </div>
@@ -104,17 +134,24 @@ class ProductDescription extends Component {
                   <p className="price-text">Price:</p>
                   {data.product.prices.map(
                     (price) =>
-                      price.currency.symbol === this.props.symbol && (
+                      price.currency.symbol === currency && (
                         <p key={price.amount} className="price-value">
-                          {this.props.symbol} {price.amount}
+                          {currency} {price.amount}
                         </p>
                       )
                   )}
 
                   <button
                     type="button"
-                    // onClick={this.props.orderDetails({...data})}
-                    onClick={() => localStorage.setItem("id", `${id}`)}
+                    onClick={() => {
+                      this.setState({
+                        productData: [...this.state.productData, data.product],
+                      });
+                      sendCartData(
+                        this.state.productData,
+                        this.state.attributes
+                      );
+                    }}
                   >
                     Add to cart
                   </button>

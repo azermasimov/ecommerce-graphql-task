@@ -6,100 +6,102 @@
   justify-content: space-between;
 }
 
-.cart-page-product-container .product-info p:nth-child(1) {
+.cart-page-product-container .product-info .brand {
   font-weight: 600;
   font-size: 30px;
   line-height: 27px;
-  color: #1d1f22;
 }
 
-.cart-page-product-container .product-info p:nth-child(2) {
+.cart-page-product-container .product-info .product-name {
   font-weight: 400;
   font-size: 30px;
   line-height: 27px;
   margin-top: 16px;
 }
 
-.cart-page-product-container .product-info p:nth-child(3) {
+.cart-page-product-container .product-info .price {
   font-weight: 700;
   font-size: 24px;
   line-height: 24px;
-  color: #1d1f22;
   margin-top: 20px;
 }
 
-.cart-page-product-container .product-info p:nth-child(4) {
+.cart-page-product-container .product-info .attributes {
+  margin-top: 20px;
+}
+
+.cart-page-product-container .product-info .attributes .attribute {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-page-product-container .product-info .attributes .attribute .name {
   font-family: "Roboto Condensed";
   font-weight: 700;
   font-size: 18px;
   line-height: 18px;
-  color: #1d1f22;
-  margin-top: 20px;
   text-transform: uppercase;
 }
 
-.cart-page-product-container .product-info .sizes {
+.cart-page-product-container .product-info .attributes .attribute .values {
   display: flex;
   flex-direction: row;
-  width: 276px;
-  height: 45px;
-  margin-top: 8px;
+  width: 100%;
 }
 
-.cart-page-product-container .product-info .sizes div {
-  width: 63px;
-  height: 45px;
-  margin-right: 8px;
-  border: 1px solid #1d1f22;
+.cart-page-product-container
+  .product-info
+  .attributes
+  .attribute
+  .values
+  .value {
   font-family: "Source Sans Pro";
   font-weight: 400;
   font-size: 16px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  width: 63px;
+  height: 45px;
+  border: 1px solid #1d1f22;
+  cursor: pointer;
+  margin: 8px 8px 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #1d1f22;
-  cursor: pointer;
+  letter-spacing: 0.05em;
 }
 
-.cart-page-product-container .product-info .sizes div:hover {
+.cart-page-product-container
+  .product-info
+  .attributes
+  .attribute
+  .values
+  .value:hover,
+.cart-page-product-container
+  .product-info
+  .attributes
+  .attribute
+  .values
+  .value.active {
   background: #1d1f22;
   color: #ffffff;
 }
 
-.cart-page-product-container .product-info .sizes div.active {
-  background: #1d1f22;
-  color: #ffffff;
-}
-
-.cart-page-product-container .product-info .text-color {
-  font-family: "Roboto Condensed";
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 18px;
-  color: #1d1f22;
-  margin-top: 16px;
-  text-transform: uppercase;
-}
-
-.cart-page-product-container .product-info .colors {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: row;
-  width: 116px;
-  height: 32px;
-}
-
-.cart-page-product-container .product-info .colors div {
+.cart-page-product-container
+  .product-info
+  .attributes
+  .attribute
+  .values
+  .value.color-square {
   width: 32px;
   height: 32px;
-  margin-right: 8px;
-  background: #1d1f22;
-  cursor: pointer;
 }
 
-.cart-page-product-container .product-info .colors div:hover {
+.cart-page-product-container
+  .product-info
+  .attributes
+  .attribute
+  .values
+  .value.color-square:hover {
   border: 1px solid #5ece7b;
 }
 
@@ -148,6 +150,7 @@
 .cart-page-product-container .product-img img {
   height: 288px;
   width: 200px;
+  object-fit: cover;
 }
 
 .cart-page-product-container .product-img div {

@@ -114,7 +114,20 @@
   border: 1px solid #5ece7b;
 }
 
+.description-container
+  .info-wrapper
+  .attributes
+  .attribute
+  .value.color-square.active {
+  border: 1px solid #5ece7b;
+}
+
 .description-container .info-wrapper .attributes .values .value:hover {
+  background-color: #1d1f22;
+  color: #ffffff;
+}
+
+.description-container .info-wrapper .attributes .values .value.active {
   background-color: #1d1f22;
   color: #ffffff;
 }

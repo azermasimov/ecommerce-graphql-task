@@ -1,15 +1,32 @@
 import { Component } from "react";
 import "../assets/css/Cart.css";
 import CartPageItem from "../components/CartPageItem";
+import CartContext from "../Context/CartContext";
 
 class Cart extends Component {
+  static contextType = CartContext;
+
   render() {
+    const { orderData } = this.context;
+
+    // console.log(selectedAttributes.attributes.map((attribute) => attribute.id));
+    console.log(orderData);
+
     return (
       <>
         <div className="cart-container">
           <h2>Cart</h2>
           <div className="line"></div>
-          <CartPageItem />
+
+          {orderData.length !== 0 ? (
+            <>
+              {orderData.productData.map((cartData) => (
+                <CartPageItem cartData={cartData} />
+              ))}
+            </>
+          ) : (
+            <h3>Empty Cart</h3>
+          )}
 
           <div className="price-wrapper">
             <div className="tax">
@@ -34,5 +51,4 @@ class Cart extends Component {
     );
   }
 }
-
 export default Cart;

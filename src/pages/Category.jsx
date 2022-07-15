@@ -3,11 +3,16 @@ import "../assets/css/Category.css";
 import Spinner from "../components/Spinner";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
+import CartContext from "../Context/CartContext";
 
 class Category extends Component {
+  static contextType = CartContext;
+
   render() {
     const pathname = window.location.pathname;
     const id = pathname.slice(pathname.lastIndexOf("/") + 1);
+
+    const { currency } = this.context;
 
     const GET_DATA = gql`
     {
@@ -43,10 +48,7 @@ class Category extends Component {
               <p className="category-name">{data.category.name}</p>
               <div className="cards">
                 {data.category.products.map((product) => (
-                  <a
-                    href={`/product/${product.id}`}
-                    key={product.id}
-                  >
+                  <a href={`/product/${product.id}`} key={product.id}>
                     <div className="card">
                       <img src={product.gallery[0]} alt="card" />
                       <div className="card-content">
@@ -55,7 +57,7 @@ class Category extends Component {
                         </p>
                         {product.prices.map(
                           (price) =>
-                            price.currency.symbol === this.props.symbol && (
+                            price.currency.symbol === currency && (
                               <p
                                 className="card-price"
                                 key={price.currency.symbol}
