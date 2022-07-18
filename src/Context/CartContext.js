@@ -7,37 +7,58 @@ export class CartProvider extends Component {
     currency: "$",
     orderData: [],
     selectedAttributes: [],
+    cartItemQty: 1,
   };
 
   onChangeCurrency = (symbol) => {
     this.setState({ currency: symbol });
   };
 
-  handleOrderDetails = (productData, attributes) => {
+  sendCartData = (productData) => {
     this.setState({ orderData: { ...this.state.orderData, productData } });
+  };
+
+  setSelectedAttributes = (id, value) => {
     this.setState({
-      selectedAttributes: {
+      selectedAttributes: [
         ...this.state.selectedAttributes,
-        attributes,
-      },
+        {
+          id: id,
+          value: value,
+        },
+      ],
     });
   };
 
-  sendCartData = (productData, selectedAttributes) => {
-    this.handleOrderDetails(productData, selectedAttributes);
+  increaseQty = () => {
+    this.setState({
+      cartItemQty: this.state.cartItemQty + 1,
+    });
+  };
+
+  decreaseQty = () => {
+    this.state.cartItemQty > 1 &&
+      this.setState({
+        cartItemQty: this.state.cartItemQty - 1,
+      });
   };
 
   render() {
-    const { currency, orderData, selectedAttributes } = this.state;
+    const { currency, orderData, selectedAttributes, cartItemQty } = this.state;
+
     return (
       <CartContext.Provider
         value={{
           currency,
           orderData,
           selectedAttributes,
+          cartItemQty,
           onChangeCurrency: this.onChangeCurrency,
-          handleOrderDetails: this.handleOrderDetails,
+          // handleOrderDetails: this.handleOrderDetails,
           sendCartData: this.sendCartData,
+          setSelectedAttributes: this.setSelectedAttributes,
+          increaseQty: this.increaseQty,
+          decreaseQty: this.decreaseQty,
         }}
       >
         {this.props.children}

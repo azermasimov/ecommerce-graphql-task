@@ -3,25 +3,22 @@ import "../assets/css/ProductDescription.css";
 import Spinner from "../components/Spinner";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
-import CartContext from "../Context/CartContext";
+import CartContext from "../context/CartContext";
+import ProductAttributes from "../components/ProductAttributes";
 
 class ProductDescription extends Component {
   state = {
     img: "",
     productData: [],
-    attributes: [],
   };
 
   static contextType = CartContext;
 
   render() {
-    console.log(this.state.attributes);
-
     const pathname = window.location.pathname;
     const id = pathname.slice(pathname.lastIndexOf("/") + 1);
 
-    const { currency, cartData, handleOrderDetails, sendCartData } =
-      this.context;
+    const { currency, sendCartData } = this.context;
 
     const GET_DATA = gql`
     {
@@ -87,49 +84,8 @@ class ProductDescription extends Component {
                 <div className="info-wrapper">
                   <p className="brand">{data.product.brand}</p>
                   <p className="name">{data.product.name}</p>
-                  <div className="attributes">
-                    {data.product.attributes.map((attribute) => (
-                      <div className="attribute" key={attribute.id}>
-                        <p className="name">{attribute.name}:</p>
-                        <div className="values">
-                          {attribute.items.map((item) => (
-                            <div
-                              key={item.id}
-                              className={`value ${
-                                attribute.name === "Color" && "color-square"
-                              } ${
-                                this.state.attributes.some(
-                                  (att) =>
-                                    att.id === attribute.id &&
-                                    att.value === item.value
-                                ) && "active"
-                              }`}
-                              style={
-                                attribute.name === "Color"
-                                  ? {
-                                      background: `${item.value}`,
-                                    }
-                                  : null
-                              }
-                              onClick={() => {
-                                this.setState({
-                                  attributes: [
-                                    ...this.state.attributes,
-                                    {
-                                      id: attribute.id,
-                                      value: item.value,
-                                    },
-                                  ],
-                                });
-                              }}
-                            >
-                              {attribute.name === "Color" ? null : item.value}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+
+                  <ProductAttributes data={data} />
 
                   <p className="price-text">Price:</p>
                   {data.product.prices.map(
@@ -147,12 +103,24 @@ class ProductDescription extends Component {
                       this.setState({
                         productData: [...this.state.productData, data.product],
                       });
-                      sendCartData(
-                        this.state.productData,
-                        this.state.attributes
-                      );
+                      sendCartData(this.state.productData);
                     }}
+                    // disabled={
+                    //   this.state.productData.some(
+                    //     (cartItem) => cartItem.id === data.product.id
+                    //   )
+                    //     ? true
+                    //     : false
+                    // }
                   >
+                    {/* {" "}
+                    {console.log(
+                      this.state.productData.some(
+                        (cartItem) => cartItem.id === data.product.id
+                      )
+                        ? true
+                        : false
+                    )} */}
                     Add to cart
                   </button>
 

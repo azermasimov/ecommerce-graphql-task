@@ -5,7 +5,7 @@ import Category from "./pages/Category";
 import ProductDescription from "./pages/ProductDescription";
 import Cart from "./pages/Cart";
 import "./assets/css/App.css";
-import { CartProvider } from "./Context/CartContext";
+import { CartProvider } from "./context/CartContext";
 
 class App extends Component {
   render() {
@@ -19,6 +19,7 @@ class App extends Component {
               <Route path="/" element={<Category />} />
               <Route path="/clothes" element={<Category />} />
               <Route path="/tech" element={<Category />} />
+
               <Route path="/product/:id" element={<ProductDescription />} />
               <Route path="/cart" element={<Cart />} />
             </Routes>

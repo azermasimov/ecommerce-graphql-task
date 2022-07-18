@@ -101,7 +101,13 @@
   .attributes
   .attribute
   .values
-  .value.color-square:hover {
+  .value.color-square:hover,
+.cart-page-product-container
+  .product-info
+  .attributes
+  .attribute
+  .values
+  .value.color-square.active {
   border: 1px solid #5ece7b;
 }
 

@@ -3,16 +3,17 @@ import "../assets/css/Category.css";
 import Spinner from "../components/Spinner";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
-import CartContext from "../Context/CartContext";
+import CartContext from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 class Category extends Component {
   static contextType = CartContext;
 
   render() {
+    const { currency } = this.context;
+
     const pathname = window.location.pathname;
     const id = pathname.slice(pathname.lastIndexOf("/") + 1);
-
-    const { currency } = this.context;
 
     const GET_DATA = gql`
     {
@@ -48,7 +49,7 @@ class Category extends Component {
               <p className="category-name">{data.category.name}</p>
               <div className="cards">
                 {data.category.products.map((product) => (
-                  <a href={`/product/${product.id}`} key={product.id}>
+                  <Link to={`/product/${product.id}`} key={product.id}>
                     <div className="card">
                       <img src={product.gallery[0]} alt="card" />
                       <div className="card-content">
@@ -69,7 +70,7 @@ class Category extends Component {
                         )}
                       </div>
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>

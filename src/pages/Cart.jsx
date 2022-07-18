@@ -1,16 +1,13 @@
 import { Component } from "react";
 import "../assets/css/Cart.css";
 import CartPageItem from "../components/CartPageItem";
-import CartContext from "../Context/CartContext";
+import CartContext from "../context/CartContext";
 
 class Cart extends Component {
   static contextType = CartContext;
 
   render() {
     const { orderData } = this.context;
-
-    // console.log(selectedAttributes.attributes.map((attribute) => attribute.id));
-    console.log(orderData);
 
     return (
       <>
@@ -21,7 +18,7 @@ class Cart extends Component {
           {orderData.length !== 0 ? (
             <>
               {orderData.productData.map((cartData) => (
-                <CartPageItem cartData={cartData} />
+                <CartPageItem key={cartData.id} cartData={cartData} />
               ))}
             </>
           ) : (

@@ -4,10 +4,11 @@ import logo from "../assets/svg/logo.svg";
 import cartIcon from "../assets/svg/cartIcon.svg";
 import downArrowIcon from "../assets/svg/downArrowIcon.svg";
 import CartOverlay from "./CartOverlay";
-import Spinner from "./Spinner";
+// import Spinner from "./Spinner";
 import { Query } from "@apollo/client/react/components";
 import { gql } from "@apollo/client";
-import CartContext from "../Context/CartContext";
+import CartContext from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 const GET_DATA = gql`
   {
@@ -33,40 +34,19 @@ class Navbar extends Component {
       <Query query={GET_DATA}>
         {({ data, loading, error }) => {
           if (error) return <h1>Error Something went wrong!</h1>;
-          if (loading) return <Spinner />;
+          if (loading) return <div></div>;
           return (
             <div className="header">
               <nav className="nav">
                 <ul>
                   <li>
-                    <a
-                      href="/"
-                      onClick={() => {
-                        this.props.category("all");
-                      }}
-                    >
-                      All
-                    </a>
+                    <Link to="/">All</Link>
                   </li>
                   <li>
-                    <a
-                      href="/clothes"
-                      onClick={() => {
-                        this.props.category("clothes");
-                      }}
-                    >
-                      Clothes
-                    </a>
+                    <Link to="/clothes">Clothes</Link>
                   </li>
                   <li>
-                    <a
-                      href="/tech"
-                      onClick={() => {
-                        this.props.category("tech");
-                      }}
-                    >
-                      Tech
-                    </a>
+                    <Link to="/tech">Tech</Link>
                   </li>
                 </ul>
                 <div className="logo">

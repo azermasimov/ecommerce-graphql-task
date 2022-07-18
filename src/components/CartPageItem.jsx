@@ -1,7 +1,7 @@
 import { Component } from "react";
 import "../assets/css/CartPageItem.css";
 import sliderArrow from "../assets/svg/sliderArrow.svg";
-import CartContext from "../Context/CartContext";
+import CartContext from "../context/CartContext";
 
 class CartPageItem extends Component {
   state = {
@@ -12,7 +12,16 @@ class CartPageItem extends Component {
 
   render() {
     const { cartData } = this.props;
-    const { currency } = this.context;
+    const {
+      currency,
+      selectedAttributes,
+      setSelectedAttributes,
+      cartItemQty,
+      increaseQty,
+      decreaseQty,
+    } = this.context;
+
+    console.log(selectedAttributes);
 
     if (this.state.imgIndex > cartData.gallery.length - 1) {
       this.state.imgIndex = 0;
@@ -48,15 +57,22 @@ class CartPageItem extends Component {
                         key={item.id}
                         className={`value ${
                           attribute.name === "Color" && "color-square"
-                        } 
-                        
-                        `}
+                        } ${
+                          selectedAttributes.some(
+                            (att) =>
+                              att.id === attribute.id &&
+                              att.value === item.value
+                          ) && "active"
+                        }`}
                         style={
                           attribute.name === "Color"
                             ? {
                                 background: `${item.value}`,
                               }
                             : null
+                        }
+                        onClick={() =>
+                          setSelectedAttributes(attribute.id, item.value)
                         }
                       >
                         {attribute.name === "Color" ? null : item.value}
@@ -70,9 +86,9 @@ class CartPageItem extends Component {
 
           <div className="count-img-wrapper">
             <div className="count-wrapper">
-              <div>+</div>
-              <p>{3}</p>
-              <div>-</div>
+              <div onClick={increaseQty}>+</div>
+              <p>{cartItemQty}</p>
+              <div onClick={decreaseQty}>-</div>
             </div>
 
             <div className="product-img">

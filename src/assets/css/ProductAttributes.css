@@ -1,0 +1,72 @@
+.description-container .info-wrapper .attributes {
+  margin-top: 43px;
+  display: flex;
+  flex-direction: column;
+}
+
+.description-container .info-wrapper .attributes .attribute {
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.description-container .info-wrapper .attributes .attribute .name {
+  font-family: "Roboto Condensed";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.description-container .info-wrapper .attributes .attribute .values {
+  display: flex;
+  flex-direction: row;
+  margin-top: 8px;
+}
+
+.description-container .info-wrapper .attributes .attribute .value {
+  width: 63px;
+  height: 45px;
+  border: 1px solid #1d1f22;
+  background: #ffffff;
+  color: #1d1f22;
+  font-family: "Source Sans Pro";
+  font-weight: 400;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 12px;
+}
+
+.description-container
+  .info-wrapper
+  .attributes
+  .attribute
+  .value.color-square {
+  border: 1px solid #1d1f22;
+  width: 32px;
+  height: 32px;
+}
+
+.description-container
+  .info-wrapper
+  .attributes
+  .attribute
+  .value.color-square:hover,
+.description-container
+  .info-wrapper
+  .attributes
+  .attribute
+  .value.color-square.active {
+  border: 1px solid #5ece7b;
+}
+
+.description-container .info-wrapper .attributes .values .value:hover,
+.description-container .info-wrapper .attributes .values .value.active {
+  background-color: #1d1f22;
+  color: #ffffff;
+}
