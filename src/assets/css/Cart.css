@@ -19,6 +19,11 @@
   background: #e5e5e5;
 }
 
+.cart-container .empty-msg {
+  font-size: 1.5rem;
+  color: #1d1f22;
+}
+
 .cart-container .price-wrapper {
   margin-top: 32px;
 }

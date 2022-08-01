@@ -12,16 +12,14 @@ class CartPageItem extends Component {
 
   render() {
     const { cartData } = this.props;
+
     const {
       currency,
       selectedAttributes,
       setSelectedAttributes,
-      cartItemQty,
-      increaseQty,
-      decreaseQty,
+      onAdd,
+      onRemove,
     } = this.context;
-
-    console.log(selectedAttributes);
 
     if (this.state.imgIndex > cartData.gallery.length - 1) {
       this.state.imgIndex = 0;
@@ -42,7 +40,7 @@ class CartPageItem extends Component {
               (price) =>
                 price.currency.symbol === currency && (
                   <p key={price.amount} className="price">
-                    {currency} {price.amount}
+                    {currency} {(price.amount * cartData.qty).toFixed(2)}
                   </p>
                 )
             )}
@@ -86,30 +84,34 @@ class CartPageItem extends Component {
 
           <div className="count-img-wrapper">
             <div className="count-wrapper">
-              <div onClick={increaseQty}>+</div>
-              <p>{cartItemQty}</p>
-              <div onClick={decreaseQty}>-</div>
+              <div onClick={() => onAdd(cartData)}>+</div>
+              <p>{cartData.qty}</p>
+              <div onClick={() => onRemove(cartData)}>-</div>
             </div>
 
             <div className="product-img">
               <img src={cartData.gallery[this.state.imgIndex]} alt="product" />
 
-              <div
-                className="left"
-                onClick={() =>
-                  this.setState({ imgIndex: this.state.imgIndex - 1 })
-                }
-              >
-                <img src={sliderArrow} alt="slider arrow icon" />
-              </div>
-              <div
-                className="right"
-                onClick={() =>
-                  this.setState({ imgIndex: this.state.imgIndex + 1 })
-                }
-              >
-                <img src={sliderArrow} alt="slider arrow icon" />
-              </div>
+              {cartData.gallery.length > 1 && (
+                <>
+                  <div
+                    className="left"
+                    onClick={() =>
+                      this.setState({ imgIndex: this.state.imgIndex - 1 })
+                    }
+                  >
+                    <img src={sliderArrow} alt="slider arrow icon" />
+                  </div>
+                  <div
+                    className="right"
+                    onClick={() =>
+                      this.setState({ imgIndex: this.state.imgIndex + 1 })
+                    }
+                  >
+                    <img src={sliderArrow} alt="slider arrow icon" />
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

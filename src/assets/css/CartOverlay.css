@@ -87,3 +87,7 @@
   color: #ffffff;
   border: none;
 }
+
+#cart-overlay .cart-overlay-wrapper .cart-btns button:hover {
+  transform: scale(1.1);
+}

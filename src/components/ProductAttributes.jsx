@@ -15,7 +15,7 @@ class ProductAttributes extends Component {
 
     return (
       <div className="attributes">
-        {data.product.attributes.map((attribute) => (
+        {data.product?.attributes.map((attribute) => (
           <div className="attribute" key={attribute.id}>
             <p className="name">{attribute.name}:</p>
             <div className="values">
@@ -27,7 +27,9 @@ class ProductAttributes extends Component {
                   } ${
                     selectedAttributes.some(
                       (att) =>
-                        att.id === attribute.id && att.value === item.value
+                        data.product.id === att.productId &&
+                        att.id === attribute.id &&
+                        att.value === item.value
                     ) && "active"
                   } 
                   `}
@@ -39,7 +41,11 @@ class ProductAttributes extends Component {
                       : null
                   }
                   onClick={() =>
-                    setSelectedAttributes(attribute.id, item.value)
+                    setSelectedAttributes(
+                      attribute.id,
+                      item.value,
+                      data.product.id
+                    )
                   }
                 >
                   {attribute.name === "Color" ? null : item.value}

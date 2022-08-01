@@ -7,22 +7,50 @@ export class CartProvider extends Component {
     currency: "$",
     orderData: [],
     selectedAttributes: [],
-    cartItemQty: 1,
   };
 
   onChangeCurrency = (symbol) => {
     this.setState({ currency: symbol });
   };
 
-  sendCartData = (productData) => {
-    this.setState({ orderData: { ...this.state.orderData, productData } });
+  onAdd = (productData) => {
+    const exist = this.state.orderData.find((x) => x.id === productData.id);
+
+    if (exist) {
+      this.setState({
+        orderData: this.state.orderData.map((x) =>
+          x.id === productData.id ? { ...exist, qty: exist.qty + 1 } : x
+        ),
+      });
+    } else {
+      this.setState({
+        orderData: [...this.state.orderData, { ...productData, qty: 1 }],
+      });
+    }
   };
 
-  setSelectedAttributes = (id, value) => {
+  onRemove = (productData) => {
+    const exist = this.state.orderData.find((x) => x.id === productData.id);
+
+    if (exist.qty === 1) {
+      this.setState({
+        orderData: this.state.orderData.filter((x) => x.id !== productData.id),
+      });
+    } else {
+      this.setState({
+        orderData: this.state.orderData.map((x) =>
+          x.id === productData.id ? { ...exist, qty: exist.qty - 1 } : x
+        ),
+      });
+    }
+  };
+
+  setSelectedAttributes = (id, value, productId) => {
     this.setState({
       selectedAttributes: [
         ...this.state.selectedAttributes,
         {
+          productId: productId,
           id: id,
           value: value,
         },
@@ -30,21 +58,8 @@ export class CartProvider extends Component {
     });
   };
 
-  increaseQty = () => {
-    this.setState({
-      cartItemQty: this.state.cartItemQty + 1,
-    });
-  };
-
-  decreaseQty = () => {
-    this.state.cartItemQty > 1 &&
-      this.setState({
-        cartItemQty: this.state.cartItemQty - 1,
-      });
-  };
-
   render() {
-    const { currency, orderData, selectedAttributes, cartItemQty } = this.state;
+    const { currency, orderData, selectedAttributes } = this.state;
 
     return (
       <CartContext.Provider
@@ -52,13 +67,10 @@ export class CartProvider extends Component {
           currency,
           orderData,
           selectedAttributes,
-          cartItemQty,
           onChangeCurrency: this.onChangeCurrency,
-          // handleOrderDetails: this.handleOrderDetails,
-          sendCartData: this.sendCartData,
+          onAdd: this.onAdd,
+          onRemove: this.onRemove,
           setSelectedAttributes: this.setSelectedAttributes,
-          increaseQty: this.increaseQty,
-          decreaseQty: this.decreaseQty,
         }}
       >
         {this.props.children}
