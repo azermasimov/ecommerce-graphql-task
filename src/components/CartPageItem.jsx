@@ -15,10 +15,10 @@ class CartPageItem extends Component {
 
     const {
       currency,
-      selectedAttributes,
-      setSelectedAttributes,
       onAdd,
       onRemove,
+      selectedAttributes,
+      onSelectAttributes,
     } = this.context;
 
     if (this.state.imgIndex > cartData.gallery.length - 1) {
@@ -57,9 +57,8 @@ class CartPageItem extends Component {
                           attribute.name === "Color" && "color-square"
                         } ${
                           selectedAttributes.some(
-                            (att) =>
-                              att.id === attribute.id &&
-                              att.value === item.value
+                            (x) =>
+                              x.attributeId === attribute.id && x.id === item.id
                           ) && "active"
                         }`}
                         style={
@@ -69,9 +68,7 @@ class CartPageItem extends Component {
                               }
                             : null
                         }
-                        onClick={() =>
-                          setSelectedAttributes(attribute.id, item.value)
-                        }
+                        onClick={() => onSelectAttributes(attribute.id, item)}
                       >
                         {attribute.name === "Color" ? null : item.value}
                       </div>

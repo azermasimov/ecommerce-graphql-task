@@ -3,9 +3,7 @@ import "../assets/css/ProductDescription.css";
 import Spinner from "../components/Spinner";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
-
 import CartContext from "../context/CartContext";
-import ProductAttributes from "../components/ProductAttributes";
 
 class ProductDescription extends Component {
   state = {
@@ -16,7 +14,8 @@ class ProductDescription extends Component {
 
   render() {
     const { img } = this.state;
-    const { currency, onAdd } = this.context;
+    const { currency, onAdd, selectedAttributes, onSelectAttributes } =
+      this.context;
 
     const pathname = window.location.pathname;
     const id = pathname.slice(pathname.lastIndexOf("/") + 1);
@@ -87,9 +86,44 @@ class ProductDescription extends Component {
                     <p className="brand">{data.product?.brand}</p>
                     <p className="name">{data.product?.name}</p>
 
-                    <ProductAttributes data={data} productId={id} />
+                    <div className="attributes">
+                      {data.product?.attributes.map((attribute) => (
+                        <div className="attribute" key={attribute.id}>
+                          <p className="name">{attribute.name}:</p>
+                          <div className="values">
+                            {attribute.items.map((item) => (
+                              <div
+                                key={item.id}
+                                className={`value ${
+                                  attribute.name === "Color" && "color-square"
+                                } ${
+                                  selectedAttributes.some(
+                                    (x) =>
+                                      x.attributeId === attribute.id &&
+                                      x.id === item.id
+                                  ) && "active"
+                                }`}
+                                style={
+                                  attribute.name === "Color"
+                                    ? {
+                                        background: `${item.value}`,
+                                      }
+                                    : null
+                                }
+                                onClick={() =>
+                                  onSelectAttributes(attribute.id, item)
+                                }
+                              >
+                                {attribute.name === "Color" ? null : item.value}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
 
                     <p className="price-text">Price:</p>
+
                     {data.product?.prices.map(
                       (price) =>
                         price.currency?.symbol === currency && (
@@ -99,7 +133,12 @@ class ProductDescription extends Component {
                         )
                     )}
 
-                    <button type="button" onClick={() => onAdd(data.product)}>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        onAdd(data.product, this.state.selectedAttributes)
+                      }
+                    >
                       Add to cart
                     </button>
 

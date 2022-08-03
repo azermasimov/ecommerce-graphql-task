@@ -13,18 +13,27 @@ export class CartProvider extends Component {
     this.setState({ currency: symbol });
   };
 
-  onAdd = (productData) => {
+  onAdd = (productData, selectedAttributes) => {
     const exist = this.state.orderData.find((x) => x.id === productData.id);
 
     if (exist) {
       this.setState({
         orderData: this.state.orderData.map((x) =>
-          x.id === productData.id ? { ...exist, qty: exist.qty + 1 } : x
+          x.id === productData.id
+            ? {
+                ...exist,
+                qty: exist.qty + 1,
+                selectedAttributes: exist.selectedAttributes,
+              }
+            : x
         ),
       });
     } else {
       this.setState({
-        orderData: [...this.state.orderData, { ...productData, qty: 1 }],
+        orderData: [
+          ...this.state.orderData,
+          { ...productData, qty: 1, selectedAttributes: selectedAttributes },
+        ],
       });
     }
   };
@@ -45,17 +54,33 @@ export class CartProvider extends Component {
     }
   };
 
-  setSelectedAttributes = (id, value, productId) => {
-    this.setState({
-      selectedAttributes: [
-        ...this.state.selectedAttributes,
-        {
-          productId: productId,
-          id: id,
-          value: value,
-        },
-      ],
-    });
+  onSelectAttributes = (attributeId, item) => {
+    const exist = this.state.selectedAttributes.find(
+      (x) => x.attributeId === attributeId
+    );
+
+    if (!exist) {
+      this.setState({
+        selectedAttributes: [
+          ...this.state.selectedAttributes,
+          {
+            attributeId: attributeId,
+            id: item.id,
+            value: item.value,
+          },
+        ],
+      });
+    } else {
+      this.setState({
+        selectedAttributes: [
+          {
+            attributeId: attributeId,
+            id: item.id,
+            value: item.value,
+          },
+        ],
+      });
+    }
   };
 
   render() {
@@ -70,7 +95,7 @@ export class CartProvider extends Component {
           onChangeCurrency: this.onChangeCurrency,
           onAdd: this.onAdd,
           onRemove: this.onRemove,
-          setSelectedAttributes: this.setSelectedAttributes,
+          onSelectAttributes: this.onSelectAttributes,
         }}
       >
         {this.props.children}

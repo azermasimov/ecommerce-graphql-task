@@ -9,10 +9,10 @@ class CartItem extends Component {
     const { cartData } = this.props;
     const {
       currency,
-      selectedAttributes,
-      setSelectedAttributes,
       onAdd,
       onRemove,
+      selectedAttributes,
+      onSelectAttributes,
     } = this.context;
 
     return (
@@ -25,7 +25,7 @@ class CartItem extends Component {
             (price) =>
               price.currency.symbol === currency && (
                 <p key={price.amount} className="price">
-                  {currency} {(price.amount * cartData.qty).toFixed(2)}
+                  {currency + " " + (price.amount * cartData.qty).toFixed(2)}
                 </p>
               )
           )}
@@ -42,8 +42,8 @@ class CartItem extends Component {
                         attribute.name === "Color" && "color-square"
                       } ${
                         selectedAttributes.some(
-                          (att) =>
-                            att.id === attribute.id && att.value === item.value
+                          (x) =>
+                            x.attributeId === attribute.id && x.id === item.id
                         ) && "active"
                       }`}
                       style={
@@ -53,9 +53,7 @@ class CartItem extends Component {
                             }
                           : null
                       }
-                      onClick={() =>
-                        setSelectedAttributes(attribute.id, item.value)
-                      }
+                      onClick={() => onSelectAttributes(attribute.id, item)}
                     >
                       {attribute.name === "Color" ? null : item.value}
                     </div>

@@ -31,12 +31,30 @@
   box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
 }
 
+.main .cards .card .card-img {
+  position: relative;
+}
+
+.main .cards .card.is-not-stock {
+  opacity: 0.5;
+}
+
 .main .cards .card img {
   width: 316px;
   height: 330px;
   margin: 16px 16px 0 16px;
   object-fit: cover;
   cursor: pointer;
+}
+
+.main .cards .card.is-not-stock .stock-msg {
+  font-size: 24px;
+  line-height: 160%;
+  color: #8d8f9a;
+  text-transform: uppercase;
+  position: absolute;
+  top: 50%;
+  left: 25%;
 }
 
 .main .cards .card .card-content {

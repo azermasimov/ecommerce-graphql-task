@@ -49,12 +49,22 @@ class Category extends Component {
               <p className="category-name">{data.category.name}</p>
               <div className="cards">
                 {data.category.products.map((product) => (
-                  <Link to={`/product/${product.id}`} key={product.id}>
-                    <div className="card">
-                      <img src={product.gallery[0]} alt="card" />
+                  <Link
+                    to={product.inStock && `/product/${product.id}`}
+                    key={product.id}
+                  >
+                    <div
+                      className={`card ${!product.inStock && "is-not-stock"}`}
+                    >
+                      <div className="card-img">
+                        <img src={product.gallery[0]} alt="card" />
+                        {!product.inStock && (
+                          <p className="stock-msg">Out of Stock</p>
+                        )}
+                      </div>
                       <div className="card-content">
                         <p className="card-title">
-                          {product.brand} {product.name}
+                          {product.brand + " " + product.name}
                         </p>
                         {product.prices.map(
                           (price) =>
@@ -63,8 +73,7 @@ class Category extends Component {
                                 className="card-price"
                                 key={price.currency.symbol}
                               >
-                                {price.currency.symbol}
-                                {price.amount}
+                                {price.currency.symbol + price.amount}
                               </p>
                             )
                         )}
