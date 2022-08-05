@@ -94,6 +94,7 @@
   .value.color-square {
   width: 32px;
   height: 32px;
+  border: none;
 }
 
 .cart-page-product-container
@@ -165,7 +166,6 @@
   height: 24px;
   background: rgba(0, 0, 0, 0.73);
   cursor: pointer;
-  z-index: 999;
 }
 
 .cart-page-product-container .product-img .left {

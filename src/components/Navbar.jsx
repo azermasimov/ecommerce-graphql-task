@@ -21,13 +21,19 @@ const GET_DATA = gql`
 class Navbar extends Component {
   state = {
     showCurrencies: false,
-    showCartOverlay: false,
   };
 
   static contextType = CartContext;
 
   render() {
-    const { currency, onChangeCurrency, orderData } = this.context;
+    const {
+      currency,
+      onChangeCurrency,
+      orderData,
+      showCartOverlay,
+      onDisplayCartOverlay,
+    } = this.context;
+    const { showCurrencies } = this.state;
 
     return (
       <Query query={GET_DATA}>
@@ -62,20 +68,18 @@ class Navbar extends Component {
                     className="currency"
                     onClick={() =>
                       this.setState({
-                        showCurrencies: !this.state.showCurrencies,
+                        showCurrencies: !showCurrencies,
                       })
                     }
                   >
                     <p>{currency}</p>
                     <img
-                      className={`${
-                        this.state.showCurrencies ? "rotate" : null
-                      }`}
+                      className={`${showCurrencies ? "rotate" : null}`}
                       src={downArrowIcon}
                       alt="arrow"
                     />
 
-                    {this.state.showCurrencies && (
+                    {showCurrencies && (
                       <div className="select">
                         {data.currencies.map((currency) => (
                           <div
@@ -92,23 +96,17 @@ class Navbar extends Component {
                     )}
                   </div>
 
-                  <div className="cart">
-                    <img
-                      className="cart-icon"
-                      src={cartIcon}
-                      alt="cart"
-                      onClick={() =>
-                        this.setState({
-                          showCartOverlay: !this.state.showCartOverlay,
-                        })
-                      }
-                    />
+                  <div
+                    className="cart"
+                    onClick={() => onDisplayCartOverlay(showCartOverlay)}
+                  >
+                    <img className="cart-icon" src={cartIcon} alt="cart" />
                     {orderData.length > 0 && (
                       <div className="items-count">{orderData.length}</div>
                     )}
                   </div>
 
-                  <CartOverlay showCartOverlay={this.state.showCartOverlay} />
+                  {showCartOverlay && <CartOverlay />}
                 </div>
               </nav>
             </div>

@@ -75,3 +75,15 @@
   line-height: 160%;
   color: #1d1f22;
 }
+
+@media screen and (max-width: 950px) {
+  .main .cards .card {
+    width: 300px;
+    height: 400px;
+  }
+
+  .main .cards .card img {
+    width: 260px;
+    height: 330px;
+  }
+}

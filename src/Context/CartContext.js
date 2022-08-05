@@ -5,12 +5,17 @@ const CartContext = React.createContext();
 export class CartProvider extends Component {
   state = {
     currency: "$",
+    showCartOverlay: false,
     orderData: [],
     selectedAttributes: [],
   };
 
   onChangeCurrency = (symbol) => {
     this.setState({ currency: symbol });
+  };
+
+  onDisplayCartOverlay = (bool) => {
+    this.setState({ showCartOverlay: !bool });
   };
 
   onAdd = (productData, selectedAttributes) => {
@@ -84,15 +89,20 @@ export class CartProvider extends Component {
   };
 
   render() {
-    const { currency, orderData, selectedAttributes } = this.state;
+    const { currency, orderData, selectedAttributes, showCartOverlay } =
+      this.state;
+
+    console.log(this.state.selectedAttributes);
 
     return (
       <CartContext.Provider
         value={{
           currency,
+          showCartOverlay,
           orderData,
           selectedAttributes,
           onChangeCurrency: this.onChangeCurrency,
+          onDisplayCartOverlay: this.onDisplayCartOverlay,
           onAdd: this.onAdd,
           onRemove: this.onRemove,
           onSelectAttributes: this.onSelectAttributes,

@@ -24,6 +24,10 @@
   border: 1px solid #1d1f22;
 }
 
+.description-container .imgs-wrapper img.active {
+  border: 1px solid #1d1f22;
+}
+
 .description-container .selected-img {
   margin-top: 33px;
 }
@@ -171,4 +175,22 @@
 .description-container .info-wrapper .description p {
   margin-top: 12px;
   line-height: 28px;
+}
+
+@media screen and (max-width: 1200px) {
+  .description-container {
+    flex-direction: column;
+  }
+
+  .description-container .imgs-wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .description-container .selected-img img {
+    height: 400px;
+    width: 450px;
+  }
 }

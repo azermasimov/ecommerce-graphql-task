@@ -61,17 +61,18 @@ class ProductDescription extends Component {
               {
                 <div className="description-container">
                   <div className="imgs-wrapper">
-                    {data.product?.gallery.map((img) => (
+                    {data.product?.gallery.map((image) => (
                       <img
-                        key={img}
-                        src={img}
+                        className={image === img ? "active" : null}
+                        key={image}
+                        src={image}
                         alt="product"
                         onLoad={() =>
                           this.setState({ img: data.product.gallery[0] })
                         }
                         onClick={() =>
                           this.setState({
-                            img,
+                            img: image,
                           })
                         }
                       />
