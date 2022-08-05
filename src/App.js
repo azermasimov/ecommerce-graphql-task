@@ -5,7 +5,7 @@ import Category from "./pages/Category";
 import ProductDescription from "./pages/ProductDescription";
 import Cart from "./pages/Cart";
 import "./assets/css/App.css";
-import { CartProvider } from "./context/CartContext";
+import { CartProvider } from "./Context/CartContext";
 
 class App extends Component {
   render() {

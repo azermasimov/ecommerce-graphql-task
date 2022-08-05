@@ -1,7 +1,7 @@
 import { Component } from "react";
 import "../assets/css/CartPageItem.css";
 import sliderArrow from "../assets/svg/sliderArrow.svg";
-import CartContext from "../context/CartContext";
+import CartContext from "../Context/CartContext";
 
 class CartPageItem extends Component {
   state = {

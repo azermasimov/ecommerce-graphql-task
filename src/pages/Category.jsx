@@ -3,7 +3,7 @@ import "../assets/css/Category.css";
 import Spinner from "../components/Spinner";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/client/react/components";
-import CartContext from "../context/CartContext";
+import CartContext from "../Context/CartContext";
 import { Link } from "react-router-dom";
 
 class Category extends Component {

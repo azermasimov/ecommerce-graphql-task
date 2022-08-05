@@ -1,7 +1,7 @@
 import { Component } from "react";
 import "../assets/css/Cart.css";
 import CartPageItem from "../components/CartPageItem";
-import CartContext from "../context/CartContext";
+import CartContext from "../Context/CartContext";
 
 class Cart extends Component {
   static contextType = CartContext;

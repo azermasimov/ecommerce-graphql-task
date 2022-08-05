@@ -6,7 +6,7 @@ import downArrowIcon from "../assets/svg/downArrowIcon.svg";
 import CartOverlay from "./CartOverlay";
 import { Query } from "@apollo/client/react/components";
 import { gql } from "@apollo/client";
-import CartContext from "../context/CartContext";
+import CartContext from "../Context/CartContext";
 import { NavLink } from "react-router-dom";
 
 const GET_DATA = gql`

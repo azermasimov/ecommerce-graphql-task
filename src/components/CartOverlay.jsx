@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import "../assets/css/CartOverlay.css";
 import CartItem from "./CartItem";
-import CartContext from "../context/CartContext";
+import CartContext from "../Context/CartContext";
 
 class CartOverlay extends Component {
   state = {
